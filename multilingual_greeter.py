@@ -14,7 +14,7 @@ lang_dict = {
 name_prompt_dict = {
     1: 'What is your name?',
     2: '¿Cómo te llamas?',
-    3: 'Quel est ton nom?'
+    3: 'Qual o seu nome?'
 }
 
 # Populate this dictionary with appropriate prompts that correspond with the ids from lang_dict.
@@ -22,7 +22,7 @@ name_prompt_dict = {
 greetings_dict = {
     1: 'Hello',
     2: 'Hola',
-    3: 'Bonjour'
+    3: 'Olá'
 }
 
 
@@ -96,7 +96,7 @@ def greet(name: str, greetings_options: Dict[int, str], lang_choice: int) -> Non
     :param lang_choice: The language the user has chosen.
     :return:
     """
-    pass  # remove pass statement and implement me
+    print(greetings_options.get(lang_choice) + ' ' + name)
 
 
 if __name__ == '__main__':
