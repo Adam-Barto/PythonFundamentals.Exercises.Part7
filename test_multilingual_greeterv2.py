@@ -124,7 +124,3 @@ class MultilingualGreeterV2Test(TestCase):
         multilingual_greeterv2.print_language_options(languages)
         self.assertEqual(expected, stdout_mock.getvalue())
 
-
-
-    def test_update_greetings(self):
-        self.fail()

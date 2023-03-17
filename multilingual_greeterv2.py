@@ -118,16 +118,19 @@ def is_admin(user_input='0'):
 
 
 def add_support():
-    new_language = input('Enter new Langauge: ')
-    new_name_ask = input('Enter new Name Ask: ')
-    new_greeting = input('Enter new Greeting: ')
-
-    lang_dict[len(lang_dict.keys()) + 1] = new_language
-    name_prompt_dict[len(greetings_dict) + 1] = new_name_ask
-    greetings_dict[len(greetings_dict) + 1] = new_greeting
+    update_dict(lang_dict, len(lang_dict) + 1, input('Enter new Langauge: '))
+    update_dict(greetings_dict, len(name_prompt_dict) + 1, input('Enter the name ask: '))
+    update_dict(greetings_dict, len(greetings_dict) + 1, input('Enter the greeting: '))
 
 
 def update_dict(chosen_dict: Dict[int, str], lang_choice: int, new_value: str):
+    """
+    Takes a chosen dict, a key value, and a string, and updates that dicts key value to the string
+    :param chosen_dict: The Dict
+    :param lang_choice: Key value
+    :param new_value: The String
+    :return:
+    """
     chosen_dict[lang_choice] = new_value
 
 
