@@ -36,7 +36,7 @@ def print_language_options(lang_options: Dict[int, str]) -> None:
     :return: None
     """
     print('Please choose a language: ')
-    for (k, v) in lang_dict.items():
+    for (k, v) in lang_options.items():
         print(str(k) + ': ' + str(v))
 
 
