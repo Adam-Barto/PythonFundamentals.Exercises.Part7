@@ -107,8 +107,24 @@ class MultilingualGreeterV2Test(TestCase):
         actual = multilingual_greeterv2.is_admin(0)
         self.assertEqual(expected, actual)
 
-    def test_add_support(self):
-        self.fail()
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_update_dict(self, stdout_mock):
+        languages = {
+            1: "English",
+            2: "Spanish",
+            3: "Portuguese"
+        }
+        expected = "Please choose a language: \n" \
+                   "1: English\n" \
+                   "2: Spanish\n" \
+                   "3: Portuguese\n" \
+                   "4: French\n"
+
+        multilingual_greeterv2.update_dict(languages, 4, 'French')
+        multilingual_greeterv2.print_language_options(languages)
+        self.assertEqual(expected, stdout_mock.getvalue())
+
+
 
     def test_update_greetings(self):
         self.fail()
