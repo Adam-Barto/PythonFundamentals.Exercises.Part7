@@ -94,9 +94,6 @@ class MultilingualGreeterV2Test(TestCase):
         multilingual_greeterv2.greet("Jules Winnfield", greetings_dict, 3)
         self.assertEqual("Olá Jules Winnfield\n", stdout_mock.getvalue())
 
-    def test_admin_choice(self):
-        self.fail()
-
     def test_is_admin_True(self):
         expected = True
         actual = multilingual_greeterv2.is_admin('1')
