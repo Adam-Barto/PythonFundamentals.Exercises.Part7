@@ -83,7 +83,7 @@ def name_input(name_prompt: str) -> str:
     :param name_prompt: A string in the user's chosen language that asks them for their name
     :return: The user's response when asked for their name
     """
-    return str(input())
+    return str(input(name_prompt))
 
 
 def greet(name: str, greetings_options: Dict[int, str], lang_choice: int) -> None:
