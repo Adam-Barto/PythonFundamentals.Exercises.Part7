@@ -109,8 +109,8 @@ def admin_choice():
         print('Not a valid Choice.')
 
 
-def is_admin():
-    user_input = input('Press 1 for Admin Mode \nPress anything else for normal mode.')
+def is_admin(user_input='0'):
+    # user_input = input('Press 1 for Admin Mode \nPress anything else for normal mode.')
     if user_input == '1':
         return True
     else:
@@ -127,18 +127,17 @@ def add_support():
     greetings_dict[len(greetings_dict) + 1] = new_greeting
 
 
-def update_dict(chosen_dict: Dict[int, str], lang_choice: int):
-    new_greeting = input('Enter a new Greeting: ')
-    chosen_dict[lang_choice] = new_greeting
+def update_dict(chosen_dict: Dict[int, str], lang_choice: int, new_value: str):
+    chosen_dict[lang_choice] = new_value
 
 
 def update_greetings():
     print_language_options(lang_dict)
-    update_dict(greetings_dict, language_input())
+    update_dict(greetings_dict, language_input(), input('Update Greetings'))
 
 
 if __name__ == '__main__':
-    if is_admin():
+    if is_admin(input('Press 1 for Admin Mode \nPress anything else for normal mode.')):
         admin_choice()
     print_language_options(lang_dict)
     chosen_lang = language_input()
