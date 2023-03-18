@@ -119,7 +119,7 @@ def is_admin(user_input='0'):
 
 def add_support():
     update_dict(lang_dict, len(lang_dict) + 1, input('Enter new Langauge: '))
-    update_dict(greetings_dict, len(name_prompt_dict) + 1, input('Enter the name ask: '))
+    update_dict(name_prompt_dict, len(name_prompt_dict) + 1, input('Enter the name ask: '))
     update_dict(greetings_dict, len(greetings_dict) + 1, input('Enter the greeting: '))
 
 

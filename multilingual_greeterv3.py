@@ -1,5 +1,7 @@
 from typing import Dict
 
+from random import randint
+
 # Populate this dictionary with at least two languages.
 # Use integers for keys and strings for values.
 # Example: Key = 1. Value = 'English'.
@@ -20,9 +22,9 @@ name_prompt_dict = {
 # Populate this dictionary with appropriate prompts that correspond with the ids from lang_dict.
 # Example: Key = 1. Value = 'Hello'.
 greetings_dict = {
-    1: 'Hello',
-    2: 'Hola',
-    3: 'Olá'
+    1: ['Hello', 'Yo', 'Howdy'],
+    2: ['Hola', 'Sí', '¡Oye!'],
+    3: ['Olá', 'Oi', 'Prazer']
 }
 
 
@@ -86,7 +88,7 @@ def name_input(name_prompt: str) -> str:
     return str(input(name_prompt))
 
 
-def greet(name: str, greetings_options: Dict[int, str], lang_choice: int) -> None:
+def greet(name: str, greetings_options: Dict[int, list], lang_choice: int) -> None:
     """
     Using the parameters provided, this function greets the user.
 
@@ -96,7 +98,7 @@ def greet(name: str, greetings_options: Dict[int, str], lang_choice: int) -> Non
     :param lang_choice: The language the user has chosen.
     :return:
     """
-    print(greetings_options.get(lang_choice) + ' ' + name)
+    print(rand_greeting(greetings_options, lang_choice) + ' ' + name)
 
 
 def admin_choice():
@@ -119,11 +121,15 @@ def is_admin(user_input='0'):
 
 def add_support():
     update_dict(lang_dict, len(lang_dict) + 1, input('Enter new Langauge: '))
-    update_dict(greetings_dict, len(name_prompt_dict) + 1, input('Enter the name ask: '))
+    update_dict(name_prompt_dict, len(name_prompt_dict) + 1, input('Enter the name ask: '))
     update_dict(greetings_dict, len(greetings_dict) + 1, input('Enter the greeting: '))
 
 
-def update_dict(chosen_dict: Dict[int, str], lang_choice: int, new_value: str):
+def update_greetings(chosen_dict, lang_choice: int, new_value: str):
+    update_dict(greetings_dict, len(greetings_dict) + 1, input('Add a greeting: '))
+
+
+def update_dict(chosen_dict, lang_choice: int, new_value: str):
     """
     Takes a chosen dict, a key value, and a string, and updates that dicts key value to the string
     :param chosen_dict: The Dict
@@ -131,7 +137,17 @@ def update_dict(chosen_dict: Dict[int, str], lang_choice: int, new_value: str):
     :param new_value: The String
     :return:
     """
-    chosen_dict[lang_choice] = new_value
+    dict_update = chosen_dict[lang_choice] = ''
+    if type(dict_update) is not list:
+        chosen_dict[lang_choice] = new_value
+    else:
+        dict_update.append(new_value)
+
+
+def rand_greeting(chosen_dict, lang_choice):
+    the_list = chosen_dict[lang_choice]
+    random_value = randint(0, len(the_list) - 1)
+    return chosen_dict[lang_choice][random_value]
 
 
 def update_greetings():
@@ -161,4 +177,3 @@ if __name__ == '__main__':
 # * The greet function will select a random item from the list when invoked.
 # * Ensure appropriate support for these new features while in admin mode.
 # * As always, be sure to include appropriate test coverage.
-#
