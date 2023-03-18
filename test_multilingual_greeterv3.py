@@ -70,9 +70,10 @@ class MultilingualGreeterV3Test(TestCase):
             2: ['Hola', 'Sí', '¡Oye!'],
             3: ['Olá', 'Oi', 'Prazer']
         }
+        greeting = multilingual_greeterv3.rand_greeting(greetings_dict, 1)
 
-        multilingual_greeterv3.greet("Winston Wolfe", greetings_dict, 1)
-        self.assertEqual("Hello Winston Wolfe\n", stdout_mock.getvalue())
+        multilingual_greeterv3.greet("Winston Wolfe", {1: [greeting]}, 1)
+        self.assertEqual(greeting + " Winston Wolfe\n", stdout_mock.getvalue())
 
     @patch('sys.stdout', new_callable=StringIO)
     def test2_greet(self, stdout_mock):
@@ -81,18 +82,23 @@ class MultilingualGreeterV3Test(TestCase):
             2: ['Hola', 'Sí', '¡Oye!'],
             3: ['Olá', 'Oi', 'Prazer']
         }
-        multilingual_greeterv3.greet("Vincent Vega", greetings_dict, 2)
-        self.assertEqual("Hola Vincent Vega\n", stdout_mock.getvalue())
+        greeting = multilingual_greeterv3.rand_greeting(greetings_dict, 2)
+
+        multilingual_greeterv3.greet("Vincent Vega", {2: [greeting]}, 2)
+        self.assertEqual(greeting + " Vincent Vega\n", stdout_mock.getvalue())
 
     @patch('sys.stdout', new_callable=StringIO)
     def test3_greet(self, stdout_mock):
+
         greetings_dict = {
             1: ['Hello', 'Yo', 'Howdy'],
             2: ['Hola', 'Sí', '¡Oye!'],
             3: ['Olá', 'Oi', 'Prazer']
         }
-        multilingual_greeterv3.greet("Jules Winnfield", greetings_dict, 3)
-        self.assertEqual("Olá Jules Winnfield\n", stdout_mock.getvalue())
+        greeting = multilingual_greeterv3.rand_greeting(greetings_dict, 3)
+
+        multilingual_greeterv3.greet("Jules Winnfield", {3: [greeting]}, 3)
+        self.assertEqual(greeting + " Jules Winnfield\n", stdout_mock.getvalue())
 
     def test_is_admin_True(self):
         expected = True
